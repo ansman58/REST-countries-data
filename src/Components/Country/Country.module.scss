@@ -1,0 +1,32 @@
+.img {
+  max-width: 400px;
+  object-fit: contain;
+}
+
+.wrapper {
+  display: flex;
+  color: white;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.back {
+  padding: 5px 15px;
+  background-color: hsl(209, 23%, 22%);
+  box-shadow: 2px 2px 3px hsl(207, 26%, 17%);
+}
+
+.lang {
+  display: flex;
+}
+.left {
+  flex-basis: 50%;
+}
+.right {
+  flex-basis: 50%;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+}

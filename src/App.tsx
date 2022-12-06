@@ -1,10 +1,16 @@
-import { useState } from "react";
-import "./App.css";
+import style from "./App.module.scss";
+import Country from "./Components/Country";
 
 function App() {
-  const [count, setCount] = useState(0);
-
-  return <div className="App"></div>;
+  return (
+    <div className={style.app}>
+      <div className={style.header}>
+        <h1>Where in the world?</h1>
+        <div>Dark</div>
+      </div>
+      <Country />
+    </div>
+  );
 }
 
 export default App;
