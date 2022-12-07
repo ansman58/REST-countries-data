@@ -8,7 +8,9 @@ function App() {
         <h1>Where in the world?</h1>
         <div>Dark</div>
       </div>
-      <Country />
+      <div className={style.container}>
+        <Country />
+      </div>
     </div>
   );
 }

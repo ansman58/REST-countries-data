@@ -1,6 +1,7 @@
 .app {
   background-color: hsl(207, 26%, 17%);
   min-height: 100vh;
+  font-family: 'Nunito Sans', sans-serif;
 }
 
 .header {
@@ -11,4 +12,22 @@
   margin-bottom: 3rem;
   background-color: hsl(209, 23%, 22%);
   padding: 30px;
+
+  @media (max-width: 600px) {
+    & > h1 {
+      font-size: 1.125rem;
+    }
+  }
+}
+
+.container {
+  padding-inline: 5rem;
+
+  @media (max-width: 1088px) {
+    padding-inline: 2rem;
+  }
+
+  @media (max-width: 600px) {
+    padding-inline: 1rem;
+  }
 }

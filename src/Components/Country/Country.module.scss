@@ -1,19 +1,46 @@
-.img {
-  max-width: 400px;
-  object-fit: contain;
-}
-
 .wrapper {
   display: flex;
   color: white;
   justify-content: space-between;
   align-items: center;
+  overflow-y: auto;
+
+  @media (max-width: 995px) {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+
+    .left {
+      margin-bottom: 2rem;
+    }
+  }
+}
+
+.img {
+  max-width: 500px;
+  width: 100%;
+  max-height: 370px;
+  object-fit: cover;
+  aspect-ratio: 1/1;
+
+  @media (max-width: 600px) {
+    max-width: 100%;
+    width: 100%;
+    max-height: 350px;
+  }
 }
 
 .back {
   padding: 5px 15px;
   background-color: hsl(209, 23%, 22%);
   box-shadow: 2px 2px 3px hsl(207, 26%, 17%);
+  cursor: pointer;
+  margin-bottom: 2rem;
+  padding: 0.4rem 2rem;
+  color: white;
+  border-radius: 5px;
+  border: unset;
+  outline: unset;
 }
 
 .lang {
@@ -26,7 +53,61 @@
   flex-basis: 50%;
 }
 
+.h2 {
+  margin-bottom: 2rem;
+}
+
 .flex {
   display: flex;
   justify-content: space-between;
+  @media (max-width: 995px) {
+    justify-content: flex-start;
+    gap: 3rem;
+  }
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
+}
+
+.first {
+  & > p:not(:last-of-type) {
+    margin-bottom: 0.7rem;
+  }
+}
+
+.currencyDiv {
+  display: flex;
+  gap: 0.3rem;
+  margin-bottom: 0.7rem;
+}
+
+.borders {
+  margin-top: 4rem;
+  display: flex;
+  flex-wrap: wrap;
+
+  & > p {
+    margin-bottom: 1rem;
+    margin-right: 0.2rem;
+  }
+}
+
+.flexBorder {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  @media (max-width: 600px) {
+    width: 100%;
+  }
+}
+
+.brd {
+  background-color: hsl(209, 23%, 22%);
+  box-shadow: 2px 2px 3px hsl(207, 26%, 17%);
+  padding: 0.4rem 2rem;
+  font-size: 0.875rem;
 }
