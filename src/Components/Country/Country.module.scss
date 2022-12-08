@@ -95,6 +95,8 @@
 
 .flexBorder {
   display: flex;
+  // display: grid;
+  // grid-template-columns: minmax();
   gap: 1rem;
   align-items: center;
   flex-wrap: wrap;

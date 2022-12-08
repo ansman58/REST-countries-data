@@ -1,7 +1,7 @@
 .app {
   background-color: hsl(207, 26%, 17%);
   min-height: 100vh;
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: "Nunito Sans", sans-serif;
 }
 
 .header {
@@ -9,15 +9,33 @@
   justify-content: space-between;
   align-items: center;
   color: white;
-  margin-bottom: 3rem;
+  padding-bottom: 3rem;
   background-color: hsl(209, 23%, 22%);
   padding: 30px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
 
   @media (max-width: 600px) {
     & > h1 {
       font-size: 1.125rem;
     }
   }
+}
+
+.darkmode {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.gap {
+  height: 3rem;
+  background-color: hsl(207, 26%, 17%);
+  z-index: 10;
+  top: 103.2px;
+  position: sticky;
 }
 
 .container {
