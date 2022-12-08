@@ -4,9 +4,10 @@ import style from "./AllCountries.module.scss";
 import SearchIcon from "../../assets/search-icon.svg";
 import Dropdown from "../../assets/arrow-up.svg";
 import clsx from "clsx";
+import { ICountryData } from "../../interfaces";
 
 const AllCountries = () => {
-  const [countries, setCountries] = React.useState<any[]>([]);
+  const [countries, setCountries] = React.useState<ICountryData[]>([]);
   const [loading, setLoading] = React.useState(false);
   const [filter, setFilter] = React.useState("Filter by region");
   const [isActiveRegion, setIsActiveRegion] = React.useState("");
@@ -39,7 +40,6 @@ const AllCountries = () => {
 
   const onSelectRegion = (region: string) => {
     setFilter(region);
-    // setIsActiveRegion("active");
     setShowDropDown(false);
   };
 
@@ -50,30 +50,18 @@ const AllCountries = () => {
       onFilter(data);
       setLoading(false);
     })();
+  }, [filter]);
 
-    // if (searchValue) {
-    //   setCountries(
-    //     countries?.filter((el: any) => {
-    //       const search = el?.name?.common.toLowerCase();
-    //       if (!search.includes(searchValue)) {
-    //         return el;
-    //       }
-    //       return search.includes(searchValue);
-    //     })
-    //   );
-    // }
-  }, [filter, searchValue]);
-
-    React.useEffect(() => {
-      setCountries(
-        countries?.filter((el: any) => {
-          // if (!el?.name?.common.toLowerCase().includes(searchValue))
-          //   el?.name.common;
-
-          return el?.name?.common.toLowerCase().includes(searchValue);
-        })
+  const onSearch = (searchTerm: string) => {
+    setSearchValue(searchTerm);
+    if (searchTerm) {
+      const filteredCountries = countries?.filter((el) =>
+        el?.name?.common.toLowerCase().includes(searchTerm)
       );
-    }, [searchValue]);
+      setCountries(filteredCountries);
+    }
+    setCountries(countries);
+  };
 
   return (
     <div className={style.wrapper}>
@@ -93,7 +81,7 @@ const AllCountries = () => {
                 placeholder="Search for a country"
                 className={style.search}
                 value={searchValue}
-                onChange={(e) => setSearchValue(e.target.value)}
+                onChange={(e) => onSearch(e.target.value)}
               />
             </div>
             <div className={style.filter}>

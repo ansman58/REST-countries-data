@@ -15,8 +15,8 @@ function App() {
       </div>
       <div className={style.gap}></div>
       <div className={style.container}>
-        {/* <Country /> */}
-        <AllCountries />
+        <Country />
+        {/* <AllCountries /> */}
       </div>
     </div>
   );

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { solid, regular, brands, icon } from '@fortawesome/fontawesome-svg-core/import.macro'
+import { ICountryData } from "../../interfaces";
 import { fetchCountryData } from "../../services";
 import style from "./Country.module.scss";
 
@@ -10,7 +9,7 @@ const Country = () => {
   const [region, setRegion] = useState("");
   const [capital, setCapital] = useState("");
   const [flag, setFlag] = useState("");
-  const [nativeName, setNativeName] = useState('');
+  const [nativeName, setNativeName] = useState("");
   const [subRegion, setSubRegion] = useState("");
   const [currencies, setCurrencies] = useState([]);
   const [topLevelDomain, setTopLevelDomain] = useState([]);
@@ -20,10 +19,10 @@ const Country = () => {
   const handleCountries = async () => {
     const data = await fetchCountryData("brazil");
 
-    // type nativeLaguages = {
-    //   official: string;
-    //   common: string;
-    // };
+    type nativeLaguages = {
+      official: string;
+      common: string;
+    };
     const native = Object.values(data?.[0]?.name?.nativeName)?.[0];
 
     setCapital(data?.[0]?.capital?.[0]);
@@ -31,19 +30,25 @@ const Country = () => {
     setFlag(data?.[0]?.flags?.svg);
     setPopulation(data?.[0]?.population);
     setRegion(data?.[0]?.region);
-    setNativeName(native['common']);
+    setNativeName((native as nativeLaguages)?.common);
     setSubRegion(data?.[0]?.subregion);
     setLanguages(Object.values(data?.[0]?.languages));
     setBorderCountries(data?.[0]?.borders);
     setTopLevelDomain(data?.[0]?.tld);
     setCurrencies(Object.values(data?.[0]?.currencies));
-    console.log(Object.values(data?.[0]?.currencies));
-    console.log({ data });
   };
 
   React.useEffect(() => {
     handleCountries?.();
   }, []);
+
+  const CountryDetails = {
+    "Native Name": nativeName,
+    Population: population,
+    Region: region,
+    "Sub Region": subRegion,
+    Capital: capital,
+  };
 
   return (
     <div className={style.parent}>
@@ -55,13 +60,16 @@ const Country = () => {
         <div className={style.right}>
           <h2 className={style.h2}>{name}</h2>
           <div className={style.flex}>
-            <div className={style.first}>
-              <p>Native Name: {nativeName}</p>
-              <p>Population: {population}</p>
-              <p>Region: {region}</p>
-              <p>Sub Region: {subRegion}</p>
-              <p>Capital: {capital}</p>
-            </div>
+            <ul className={style.first}>
+              {Object.entries(CountryDetails)?.map(
+                (el: string[], index: number) => (
+                  <li key={index + "countryDetails"}>
+                    <span>{el?.[0]}: </span>
+                    <span>{el?.[1]}</span>
+                  </li>
+                )
+              )}
+            </ul>
             <div className={style.last}>
               <div className={style.currencyDiv}>
                 <p>Top Level Domain: </p> <p>{topLevelDomain?.join(", ")}</p>
@@ -69,15 +77,17 @@ const Country = () => {
               <div className={style.currencyDiv}>
                 <p>Currencies: </p>
                 <div>
-                  {currencies?.map((el: string, index: number) => (
-                    <p key={index + "currency"}>{el.name }</p>
-                  ))}
+                  {currencies?.map(
+                    (el: { [key: string]: string }, index: number) => (
+                      <p key={index + "currency"}>{el.name}</p>
+                    )
+                  )}
                 </div>
               </div>
               <p></p>
 
               <div className={`${style.lang}, ${style.currencyDiv}`}>
-                <p className="">Languages: </p>
+                <p>Languages: </p>
                 <p>{languages.join(", ")}</p>
               </div>
             </div>
@@ -87,9 +97,9 @@ const Country = () => {
             <p>Border Countries: </p>
             <div className={style.flexBorder}>
               {borderCountries.map((el: string, index: number) => (
-                <React.Fragment key={index}>
-                  <p className={style.brd}>{el}</p>
-                </React.Fragment>
+                <p className={style.brd} key={index}>
+                  {el}
+                </p>
               ))}
             </div>
           </div>
