@@ -1,9 +1,11 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { getAllCountries } from "../../services";
 import style from "./AllCountries.module.scss";
 import clsx from "clsx";
 import { ICountryData } from "../../interfaces";
 import { FaSearch, FaAngleDown } from "react-icons/fa";
+import { routes } from "../../navigation";
 
 const AllCountries = () => {
   const [countries, setCountries] = React.useState<ICountryData[]>([]);
@@ -11,6 +13,7 @@ const AllCountries = () => {
   const [filter, setFilter] = React.useState("Filter by region");
   const [searchValue, setSearchValue] = React.useState("");
   const [showDropdown, setShowDropDown] = React.useState(false);
+  const navigate = useNavigate();
 
   const regions = ["Africa", "America", "Asia", "Europe", "Oceania"];
 
@@ -81,11 +84,6 @@ const AllCountries = () => {
                 onClick={() => setShowDropDown((prev) => !prev)}
               >
                 <p>{filter}</p>
-                {/* <img
-                  src={Dropdown}
-                  alt=""
-                  className={clsx({ [style.rotate]: showDropdown })}
-                /> */}
                 <FaAngleDown
                   color="white"
                   className={clsx({ [style.rotate]: showDropdown })}
@@ -109,10 +107,18 @@ const AllCountries = () => {
           <div className={style.container}>
             {countries
               .filter((el: ICountryData) =>
-                el?.name?.common.toLowerCase().includes(searchValue)
+                el?.name?.common
+                  .toLowerCase()
+                  .includes(searchValue.toLowerCase())
               )
               .map((el, index) => (
-                <div key={index} className={style.content}>
+                <div
+                  key={index}
+                  className={style.content}
+                  onClick={() =>
+                    navigate(routes.CountryRoute + "/" + el?.name?.common)
+                  }
+                >
                   <div className={style["img-container"]}>
                     <img
                       src={el?.flags?.svg}
@@ -124,7 +130,9 @@ const AllCountries = () => {
                     <li className={style.name}>{el?.name?.common}</li>
                     <li className={style.item}>
                       <span className={style.span1}>Population:</span>{" "}
-                      <span> {el?.population}</span>
+                      <span>
+                        {Intl.NumberFormat().format(Number(el?.population))}
+                      </span>
                     </li>
                     <li className={style.item}>
                       <span className={style.span1}> Region: </span>{" "}
