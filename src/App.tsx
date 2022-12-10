@@ -1,7 +1,6 @@
 import style from "./App.module.scss";
 import AllCountries from "./Components/AllCountries";
-import Country from "./Components/Country";
-import MoonIcon from "./assets/moon.svg";
+import { FaMoon } from "react-icons/fa";
 
 function App() {
   return (
@@ -9,7 +8,7 @@ function App() {
       <div className={style.header}>
         <h1>Where in the world?</h1>
         <div className={style.darkmode}>
-          <img src={MoonIcon} alt="" />
+          <FaMoon />
           <span>Dark</span>
         </div>
       </div>

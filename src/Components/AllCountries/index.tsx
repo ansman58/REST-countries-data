@@ -1,10 +1,9 @@
 import React from "react";
 import { getAllCountries } from "../../services";
 import style from "./AllCountries.module.scss";
-import SearchIcon from "../../assets/search-icon.svg";
-import Dropdown from "../../assets/arrow-up.svg";
 import clsx from "clsx";
 import { ICountryData } from "../../interfaces";
+import { FaSearch, FaAngleDown } from "react-icons/fa";
 
 const AllCountries = () => {
   const [countries, setCountries] = React.useState<ICountryData[]>([]);
@@ -67,11 +66,7 @@ const AllCountries = () => {
         <>
           <div className={style["search-container"]}>
             <div className={style["search-content"]}>
-              <img
-                src={SearchIcon}
-                alt="search icon"
-                className={style["search-icon"]}
-              />
+              <FaSearch color="black" className={style["search-icon"]} />
               <input
                 type="search"
                 placeholder="Search for a country..."
@@ -86,9 +81,13 @@ const AllCountries = () => {
                 onClick={() => setShowDropDown((prev) => !prev)}
               >
                 <p>{filter}</p>
-                <img
+                {/* <img
                   src={Dropdown}
                   alt=""
+                  className={clsx({ [style.rotate]: showDropdown })}
+                /> */}
+                <FaAngleDown
+                  color="white"
                   className={clsx({ [style.rotate]: showDropdown })}
                 />
               </div>
