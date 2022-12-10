@@ -19,10 +19,11 @@
   width: 100%;
   position: relative;
 }
+
 .suggestions {
-  background-color: white;
+  background-color: hsl(209, 23%, 22%);
+  color: white;
   position: absolute !important;
-  // padding: 2rem;
 
   & > li {
     padding-block: 1rem;
@@ -103,6 +104,8 @@
   outline: unset;
   border: unset;
   padding-block: 20px;
+  background-color: hsl(209, 23%, 22%);
+  color: white;
 }
 
 .container {

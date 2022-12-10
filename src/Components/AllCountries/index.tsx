@@ -61,6 +61,20 @@ const AllCountries = () => {
     })();
   }, [filter]);
 
+  const onSearch = (isSuggestions?: boolean) => {
+    if (isSuggestions) {
+      return countries
+        .filter((data) =>
+          data?.name?.common.toLowerCase().includes(searchValue.toLowerCase())
+        )
+        .slice(0, 4);
+    }
+
+    return countries.filter((data) =>
+      data?.name?.common.toLowerCase().includes(searchValue.toLowerCase())
+    );
+  };
+
   return (
     <div className={style.wrapper}>
       {loading ? (
@@ -70,7 +84,7 @@ const AllCountries = () => {
           <div className={style["search-container"]}>
             <div className={style.con}>
               <div className={style["search-content"]}>
-                <FaSearch color="black" className={style["search-icon"]} />
+                <FaSearch color="white" className={style["search-icon"]} />
                 <input
                   type="search"
                   placeholder="Search for a country..."
@@ -83,23 +97,16 @@ const AllCountries = () => {
                 <ul
                   className={clsx(style.suggestions, style["search-content"])}
                 >
-                  {countries
-                    .filter((el: ICountryData) =>
-                      el?.name?.common
-                        .toLowerCase()
-                        .includes(searchValue.toLowerCase())
-                    )
-                    .slice(0, 6)
-                    .map((el, index) => (
-                      <li
-                        key={index + "suggest"}
-                        onClick={() =>
-                          navigate(routes.CountryRoute + "/" + el.name?.common)
-                        }
-                      >
-                        {el.name?.common}
-                      </li>
-                    ))}
+                  {onSearch(true).map((el, index) => (
+                    <li
+                      key={index + "suggest"}
+                      onClick={() =>
+                        navigate(routes.CountryRoute + "/" + el.name?.common)
+                      }
+                    >
+                      {el.name?.common}
+                    </li>
+                  ))}
                 </ul>
               )}
             </div>
@@ -131,46 +138,36 @@ const AllCountries = () => {
             </div>
           </div>
           <div className={style.container}>
-            {countries
-              .filter((el: ICountryData) =>
-                el?.name?.common
-                  .toLowerCase()
-                  .includes(searchValue.toLowerCase())
-              )
-              .map((el, index) => (
-                <div
-                  key={index}
-                  className={style.content}
-                  onClick={() =>
-                    navigate(routes.CountryRoute + "/" + el?.name?.common)
-                  }
-                >
-                  <div className={style["img-container"]}>
-                    <img
-                      src={el?.flags?.svg}
-                      alt="flag"
-                      className={style.img}
-                    />
-                  </div>
-                  <ul className={style.details}>
-                    <li className={style.name}>{el?.name?.common}</li>
-                    <li className={style.item}>
-                      <span className={style.span1}>Population:</span>{" "}
-                      <span>
-                        {Intl.NumberFormat().format(Number(el?.population))}
-                      </span>
-                    </li>
-                    <li className={style.item}>
-                      <span className={style.span1}> Region: </span>{" "}
-                      <span>{el?.region}</span>{" "}
-                    </li>
-                    <li className={style.item}>
-                      <span className={style.span1}> Capital: </span>
-                      <span>{el?.capital?.[0]}</span>{" "}
-                    </li>
-                  </ul>
+            {onSearch().map((el, index) => (
+              <div
+                key={index}
+                className={style.content}
+                onClick={() =>
+                  navigate(routes.CountryRoute + "/" + el?.name?.common)
+                }
+              >
+                <div className={style["img-container"]}>
+                  <img src={el?.flags?.svg} alt="flag" className={style.img} />
                 </div>
-              ))}
+                <ul className={style.details}>
+                  <li className={style.name}>{el?.name?.common}</li>
+                  <li className={style.item}>
+                    <span className={style.span1}>Population:</span>{" "}
+                    <span>
+                      {Intl.NumberFormat().format(Number(el?.population))}
+                    </span>
+                  </li>
+                  <li className={style.item}>
+                    <span className={style.span1}> Region: </span>{" "}
+                    <span>{el?.region}</span>{" "}
+                  </li>
+                  <li className={style.item}>
+                    <span className={style.span1}> Capital: </span>
+                    <span>{el?.capital?.[0]}</span>{" "}
+                  </li>
+                </ul>
+              </div>
+            ))}
           </div>
         </>
       )}
