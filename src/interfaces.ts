@@ -6,7 +6,7 @@ export interface ICountryData {
   flags: { png: string; svg: string };
   nativeName: string;
   subRegion: string;
-  currencies: Record<string, { name: string; symbol: string }>;
+  currencies: Record<string, { name: string; symbol: string }>[];
   topLevelDomain: string[];
   languages: string[];
   borderCountries: string[];

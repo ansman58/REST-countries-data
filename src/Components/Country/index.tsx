@@ -11,7 +11,7 @@ const Country = () => {
   const [flag, setFlag] = useState("");
   const [nativeName, setNativeName] = useState("");
   const [subRegion, setSubRegion] = useState("");
-  const [currencies, setCurrencies] = useState([]);
+  const [currencies, setCurrencies] = useState<any[]>([]);
   const [topLevelDomain, setTopLevelDomain] = useState([]);
   const [languages, setLanguages] = useState<string[]>([]);
   const [borderCountries, setBorderCountries] = useState<string[]>([]);
@@ -23,6 +23,7 @@ const Country = () => {
       official: string;
       common: string;
     };
+
     const native = Object.values(data?.[0]?.name?.nativeName)?.[0];
 
     setCapital(data?.[0]?.capital?.[0]);
@@ -76,15 +77,14 @@ const Country = () => {
               </div>
               <div className={style.currencyDiv}>
                 <p>Currencies: </p>
-                <div>
+                <ul>
                   {currencies?.map(
                     (el: { [key: string]: string }, index: number) => (
-                      <p key={index + "currency"}>{el.name}</p>
+                      <li key={index + "currency"}>{el.name}</li>
                     )
                   )}
-                </div>
+                </ul>
               </div>
-              <p></p>
 
               <div className={`${style.lang}, ${style.currencyDiv}`}>
                 <p>Languages: </p>
@@ -95,13 +95,13 @@ const Country = () => {
 
           <div className={style.borders}>
             <p>Border Countries: </p>
-            <div className={style.flexBorder}>
+            <ul className={style.flexBorder}>
               {borderCountries.map((el: string, index: number) => (
-                <p className={style.brd} key={index}>
+                <li className={style.brd} key={index}>
                   {el}
-                </p>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
         </div>
       </div>
