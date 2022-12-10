@@ -10,7 +10,7 @@
   width: 100%;
   top: 150px;
 
-  @media (max-width: 800px) {
+  @media (max-width: 768px) {
     flex-direction: column;
   }
 }
@@ -37,8 +37,12 @@
 }
 
 .search-content {
-  width: 25%;
+  width: 35%;
   position: relative;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 }
 
 .search-icon {
@@ -50,8 +54,13 @@
 }
 
 .filter {
-  width: 15%;
+  width: 30%;
   position: relative;
+
+  @media (max-width: 768px) {
+    margin-top: 1rem;
+    width: 50%;
+  }
 }
 
 .div1 {
@@ -64,6 +73,8 @@
   border-radius: 3px;
   padding-inline: 10px;
   color: white;
+  // background-color: red;
+  // width: 35%;
 
   p {
     font-weight: 600;
