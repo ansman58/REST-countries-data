@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { ICountryData } from "../../interfaces";
 import { fetchCountryData } from "../../services";
 import style from "./Country.module.scss";
 import { FaArrowLeft } from "react-icons/fa";
+import { routes } from "../../navigation";
 
 interface ICountry {
   country?: string;
@@ -22,13 +23,13 @@ const Country: React.FC<ICountry> = ({}) => {
   const [languages, setLanguages] = useState<string[]>([]);
   const [borderCountries, setBorderCountries] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const { name } = useParams();
 
   const handleCountries = async () => {
     setLoading(true);
     const data = await fetchCountryData(name as string);
-    console.log({ data });
 
     type nativeLaguages = {
       official: string;
@@ -66,7 +67,10 @@ const Country: React.FC<ICountry> = ({}) => {
   return (
     <div className={style.parent}>
       {loading && <p>Loading...</p>}
-      <button className={style.back}>
+      <button
+        className={style.back}
+        onClick={() => navigate(routes.AllCountriesRoute)}
+      >
         <FaArrowLeft />
         <span>Back</span>
       </button>

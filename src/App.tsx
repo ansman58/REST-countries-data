@@ -15,8 +15,11 @@ function App() {
       <CountryContext.Provider value={{ name, setName }}>
         <BrowserRouter>
           <Routes>
-            <Route path={routes.AllCountriesRoute} element={<Screens />}>
-              <Route path="/all" element={<AllCountries />} />
+            <Route path={"/"} element={<Screens />}>
+              <Route
+                path={routes.AllCountriesRoute}
+                element={<AllCountries />}
+              />
               <Route
                 path={routes.CountryRoute + "/:name"}
                 element={<Country />}

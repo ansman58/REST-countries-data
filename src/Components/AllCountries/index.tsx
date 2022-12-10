@@ -68,16 +68,42 @@ const AllCountries = () => {
       ) : (
         <>
           <div className={style["search-container"]}>
-            <div className={style["search-content"]}>
-              <FaSearch color="black" className={style["search-icon"]} />
-              <input
-                type="search"
-                placeholder="Search for a country..."
-                className={style.search}
-                value={searchValue}
-                onChange={(e) => setSearchValue(e.target.value)}
-              />
+            <div className={style.con}>
+              <div className={style["search-content"]}>
+                <FaSearch color="black" className={style["search-icon"]} />
+                <input
+                  type="search"
+                  placeholder="Search for a country..."
+                  className={style.search}
+                  value={searchValue}
+                  onChange={(e) => setSearchValue(e.target.value)}
+                />
+              </div>
+              {!!searchValue && (
+                <ul
+                  className={clsx(style.suggestions, style["search-content"])}
+                >
+                  {countries
+                    .filter((el: ICountryData) =>
+                      el?.name?.common
+                        .toLowerCase()
+                        .includes(searchValue.toLowerCase())
+                    )
+                    .slice(0, 6)
+                    .map((el, index) => (
+                      <li
+                        key={index + "suggest"}
+                        onClick={() =>
+                          navigate(routes.CountryRoute + "/" + el.name?.common)
+                        }
+                      >
+                        {el.name?.common}
+                      </li>
+                    ))}
+                </ul>
+              )}
             </div>
+
             <div className={style.filter}>
               <div
                 className={style.div1}

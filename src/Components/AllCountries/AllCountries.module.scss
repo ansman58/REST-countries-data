@@ -15,6 +15,26 @@
   }
 }
 
+.con {
+  width: 100%;
+  position: relative;
+}
+.suggestions {
+  background-color: white;
+  position: absolute !important;
+  // padding: 2rem;
+
+  & > li {
+    padding-block: 1rem;
+    cursor: pointer;
+    padding-inline: 1rem;
+
+    &:hover {
+      background-color: rgba(202, 189, 189, 0.1);
+    }
+  }
+}
+
 .search-content {
   width: 25%;
   position: relative;
