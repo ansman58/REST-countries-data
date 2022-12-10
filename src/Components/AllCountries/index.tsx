@@ -65,13 +65,13 @@ const AllCountries = () => {
     if (isSuggestions) {
       return countries
         .filter((data) =>
-          data?.name?.common.toLowerCase().includes(searchValue.toLowerCase())
+          data?.name?.common.toLowerCase().startsWith(searchValue.toLowerCase())
         )
         .slice(0, 4);
     }
 
     return countries.filter((data) =>
-      data?.name?.common.toLowerCase().includes(searchValue.toLowerCase())
+      data?.name?.common.toLowerCase().startsWith(searchValue.toLowerCase())
     );
   };
 
