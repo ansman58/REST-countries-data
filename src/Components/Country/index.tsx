@@ -4,6 +4,7 @@ import { fetchCountryData } from "../../services";
 import style from "./Country.module.scss";
 import { FaArrowLeft } from "react-icons/fa";
 import { routes } from "../../navigation";
+import { DarkmodeContext } from "../../contexts";
 
 interface ICountry {
   country?: string;
@@ -23,8 +24,8 @@ const Country: React.FC<ICountry> = ({}) => {
   const [borderCountries, setBorderCountries] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-
   const { name } = useParams();
+  const { darkmodeEnabled } = React.useContext(DarkmodeContext);
 
   const handleCountries = async () => {
     setLoading(true);
@@ -72,11 +73,18 @@ const Country: React.FC<ICountry> = ({}) => {
           <button
             className={style.back}
             onClick={() => navigate(routes.AllCountriesRoute)}
+            style={{
+              color: darkmodeEnabled ? "white" : "black",
+              backgroundColor: darkmodeEnabled ? "hsl(209, 23%, 22%)" : "white",
+            }}
           >
             <FaArrowLeft />
             <span>Back</span>
           </button>
-          <div className={style.wrapper}>
+          <div
+            className={style.wrapper}
+            style={{ color: darkmodeEnabled ? "white" : "black" }}
+          >
             <div className={style.left}>
               <img src={flag} alt={`flag of ${flag}`} className={style.img} />
             </div>

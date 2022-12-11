@@ -6,6 +6,8 @@ import clsx from "clsx";
 import { ICountryData } from "../../interfaces";
 import { FaSearch, FaAngleDown } from "react-icons/fa";
 import { routes } from "../../navigation";
+import { useClickOutside } from "../../hooks/useClickOutside";
+import { DarkmodeContext } from "../../contexts";
 
 const AllCountries = () => {
   const [countries, setCountries] = React.useState<ICountryData[]>([]);
@@ -14,6 +16,8 @@ const AllCountries = () => {
   const [searchValue, setSearchValue] = React.useState("");
   const [showDropdown, setShowDropDown] = React.useState(false);
   const navigate = useNavigate();
+  const { ref, isOpen, setIsOpen } = useClickOutside();
+  const { darkmodeEnabled } = React.useContext(DarkmodeContext);
 
   const regions = ["Africa", "America", "Asia", "Europe", "Oceania"];
 
@@ -76,7 +80,12 @@ const AllCountries = () => {
   };
 
   return (
-    <div className={style.wrapper}>
+    <div
+      className={clsx(style.wrapper, {
+        [style.darkmode]: darkmodeEnabled,
+        [style.lightmode]: !darkmodeEnabled,
+      })}
+    >
       {loading ? (
         "loading"
       ) : (
@@ -96,6 +105,7 @@ const AllCountries = () => {
               {!!searchValue && (
                 <ul
                   className={clsx(style.suggestions, style["search-content"])}
+                  ref={ref}
                 >
                   {onSearch(true).map((el, index) => (
                     <li
@@ -145,6 +155,7 @@ const AllCountries = () => {
                 onClick={() =>
                   navigate(routes.CountryRoute + "/" + el?.name?.common)
                 }
+                style={{}}
               >
                 <div className={style["img-container"]}>
                   <img src={el?.flags?.svg} alt="flag" className={style.img} />

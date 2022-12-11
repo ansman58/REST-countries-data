@@ -21,8 +21,8 @@
 }
 
 .suggestions {
-  background-color: hsl(209, 23%, 22%);
-  color: white;
+  // background-color: hsl(209, 23%, 22%);
+  // color: white;
   position: absolute !important;
   z-index: 20;
 
@@ -66,14 +66,14 @@
 
 .div1 {
   height: 40px;
-  background-color: hsl(209, 23%, 22%);
+  // background-color: hsl(209, 23%, 22%);
   display: flex;
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
   border-radius: 3px;
   padding-inline: 10px;
-  color: white;
+  // color: white;
 
   p {
     font-weight: 600;
@@ -86,12 +86,12 @@
 }
 
 .ul {
-  background-color: hsl(209, 23%, 22%);
+  // background-color: hsl(209, 23%, 22%);
   margin-top: 0.7rem;
   padding-block: 1rem;
   position: absolute;
   width: 100%;
-  color: white;
+  // color: white;
 
   li {
     list-style: none;
@@ -114,8 +114,8 @@
   outline: unset;
   border: unset;
   padding-block: 20px;
-  background-color: hsl(209, 23%, 22%);
-  color: white;
+  // background-color: hsl(209, 23%, 22%);
+  // color: white;
 }
 
 .container {
@@ -145,7 +145,7 @@
 }
 
 .content {
-  background-color: white;
+  // background-color: white;
   margin-bottom: 4rem;
   display: flex;
   flex-direction: column;
@@ -181,4 +181,45 @@
 
 .span1 {
   font-weight: 600;
+}
+
+.darkmode {
+  background-color: hsl(207, 26%, 17%);
+  color: hsl(0, 0%, 100%);
+
+  &* {
+    background-color: hsl(209, 23%, 22%);
+  }
+
+  .ul .search,
+  .div1,
+  .suggestions,
+  .content,
+  .search-content {
+    background-color: hsl(209, 23%, 22%);
+    color: white;
+  }
+}
+
+.lightmode {
+  background-color: hsl(0, 0%, 98%);
+  color: hsl(200, 15%, 8%);
+
+  &* {
+    background-color: hsl(0, 0%, 100%);
+  }
+
+  .ul,
+  .div1,
+  .search,
+  .suggestions,
+  .content,
+  .search-content {
+    background-color: hsl(0, 0%, 100%);
+    color: hsl(200, 15%, 8%);
+  }
+
+  .search {
+    color: hsl(0, 0%, 52%);
+  }
 }

@@ -1,4 +1,4 @@
 export const routes = {
-  AllCountriesRoute: "/all",
+  AllCountriesRoute: "/",
   CountryRoute: "/country",
 };

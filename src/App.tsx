@@ -4,30 +4,31 @@ import Country from "./Components/Country";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Screens from "./Screens";
 import { routes } from "./navigation";
-import { CountryContext } from "./contexts";
 import AllCountries from "./Components/AllCountries";
 
 function App() {
-  const [name, setName] = React.useState("");
-
   return (
     <div className={style.app}>
-      <CountryContext.Provider value={{ name, setName }}>
-        <BrowserRouter>
-          <Routes>
-            <Route path={"/"} element={<Screens />}>
-              <Route
-                path={routes.AllCountriesRoute}
-                element={<AllCountries />}
-              />
-              <Route
-                path={routes.CountryRoute + "/:name"}
-                element={<Country />}
-              />
-            </Route>
-          </Routes>
-        </BrowserRouter>
-      </CountryContext.Provider>
+      <BrowserRouter>
+        <Routes>
+          <Route
+            path={routes.AllCountriesRoute}
+            element={
+              <Screens>
+                <AllCountries />
+              </Screens>
+            }
+          />
+          <Route
+            path={routes.CountryRoute + "/:name"}
+            element={
+              <Screens>
+                <Country />
+              </Screens>
+            }
+          />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }

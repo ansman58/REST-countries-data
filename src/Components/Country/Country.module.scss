@@ -1,6 +1,6 @@
 .wrapper {
   display: flex;
-  color: white;
+  // color: white;
   justify-content: space-between;
   align-items: center;
   overflow-y: auto;
@@ -35,11 +35,11 @@ li {
 }
 
 .back {
-  background-color: hsl(209, 23%, 22%);
+  // background-color: hsl(209, 23%, 22%);
   box-shadow: 2px 2px 3px hsl(210, 31%, 11%);
   cursor: pointer;
   margin-bottom: 2rem;
-  color: white;
+  // color: white;
   border-radius: 5px;
   border: unset;
   outline: unset;
