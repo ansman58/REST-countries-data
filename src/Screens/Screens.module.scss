@@ -29,13 +29,6 @@
   cursor: pointer;
 }
 
-.gap {
-  height: 3rem;
-  z-index: 10;
-  top: 103.2px;
-  position: sticky;
-}
-
 .container {
   padding-inline: 5rem;
 
@@ -52,13 +45,8 @@
   background-color: hsl(207, 26%, 17%);
   color: hsl(0, 0%, 100%);
 
-  .header,
-  .gap {
+  .header {
     background-color: hsl(209, 23%, 22%);
-  }
-
-  .gap {
-    background-color: hsl(207, 26%, 17%);
   }
 }
 
@@ -68,9 +56,5 @@
 
   .header {
     background-color: hsl(0, 0%, 100%);
-  }
-
-  .gap {
-    background-color: hsl(0, 0%, 98%);
   }
 }

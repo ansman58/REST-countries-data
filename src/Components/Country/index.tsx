@@ -5,6 +5,7 @@ import style from "./Country.module.scss";
 import { FaArrowLeft } from "react-icons/fa";
 import { routes } from "../../navigation";
 import { DarkmodeContext } from "../../contexts";
+import clsx from "clsx";
 
 interface ICountry {
   country?: string;
@@ -69,7 +70,12 @@ const Country: React.FC<ICountry> = ({}) => {
       {loading ? (
         <p>Loading...</p>
       ) : (
-        <div className={style.parent}>
+        <div
+          className={clsx(style.parent, {
+            [style.darkmode]: darkmodeEnabled,
+            [style.lightmode]: !darkmodeEnabled,
+          })}
+        >
           <button
             className={style.back}
             onClick={() => navigate(routes.AllCountriesRoute)}

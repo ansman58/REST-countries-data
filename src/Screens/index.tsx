@@ -34,7 +34,6 @@ const Screens: React.FC<IScreens> = ({ children }) => {
             <span>Dark</span>
           </div>
         </div>
-        <div className={style.gap}></div>
         <div className={style.container}>{children}</div>
       </div>
     </DarkmodeContext.Provider>

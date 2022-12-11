@@ -1,6 +1,5 @@
 .wrapper {
   display: flex;
-  // color: white;
   justify-content: space-between;
   align-items: center;
   overflow-y: auto;
@@ -35,11 +34,9 @@ li {
 }
 
 .back {
-  // background-color: hsl(209, 23%, 22%);
   box-shadow: 2px 2px 3px hsl(210, 31%, 11%);
   cursor: pointer;
   margin-bottom: 2rem;
-  // color: white;
   border-radius: 5px;
   border: unset;
   outline: unset;
@@ -121,7 +118,6 @@ li {
 }
 
 .brd {
-  background-color: hsl(209, 23%, 22%);
   box-shadow: 2px 2px 3px hsl(207, 26%, 17%);
   text-align: center;
   font-size: 0.875rem;
@@ -130,4 +126,18 @@ li {
   height: 100%;
   padding-block: 0.5rem;
   border-radius: 5px;
+}
+
+.darkmode {
+  background-color: hsl(207, 26%, 17%);
+  color: hsl(0, 0%, 100%);
+
+  .brd {
+    background-color: hsl(209, 23%, 22%);
+  }
+}
+
+.lightmode {
+  background-color: hsl(0, 0%, 98%);
+  color: hsl(200, 15%, 8%);
 }

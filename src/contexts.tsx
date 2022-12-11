@@ -11,19 +11,3 @@ const initialDarkModeState: IinitialDarkModeState = {
 };
 
 export const DarkmodeContext = React.createContext(initialDarkModeState);
-
-// interface IDarkmodeContextProvider {
-//   children: React.ReactNode;
-// }
-
-// export const DarkmodeContextProvider: React.FC<IDarkmodeContextProvider> = ({
-//   children,
-// }) => {
-//   const [darkmodeEnabled, setDarkmodeEnabled] = React.useState(false);
-  
-//   return (
-//     <DarkmodeContext.Provider value={{ darkmodeEnabled, setDarkmodeEnabled }}>
-//       {children}
-//     </DarkmodeContext.Provider>
-//   );
-// };

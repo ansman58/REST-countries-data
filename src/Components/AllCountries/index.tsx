@@ -162,7 +162,6 @@ const AllCountries = () => {
                 onClick={() =>
                   navigate(routes.CountryRoute + "/" + el?.name?.common)
                 }
-                style={{}}
               >
                 <div className={style["img-container"]}>
                   <img src={el?.flags?.svg} alt="flag" className={style.img} />
@@ -170,18 +169,18 @@ const AllCountries = () => {
                 <ul className={style.details}>
                   <li className={style.name}>{el?.name?.common}</li>
                   <li className={style.item}>
-                    <span className={style.span1}>Population:</span>{" "}
+                    <span className={style.span1}>Population:</span>
                     <span>
                       {Intl.NumberFormat().format(Number(el?.population))}
                     </span>
                   </li>
                   <li className={style.item}>
-                    <span className={style.span1}> Region: </span>{" "}
-                    <span>{el?.region}</span>{" "}
+                    <span className={style.span1}> Region: </span>
+                    <span>{el?.region}</span>
                   </li>
                   <li className={style.item}>
                     <span className={style.span1}> Capital: </span>
-                    <span>{el?.capital?.[0]}</span>{" "}
+                    <span>{el?.capital?.[0]}</span>
                   </li>
                 </ul>
               </div>
