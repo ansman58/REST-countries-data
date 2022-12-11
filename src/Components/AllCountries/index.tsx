@@ -6,7 +6,6 @@ import clsx from "clsx";
 import { ICountryData } from "../../interfaces";
 import { FaSearch, FaAngleDown } from "react-icons/fa";
 import { routes } from "../../navigation";
-import { useClickOutside } from "../../hooks/useClickOutside";
 import { DarkmodeContext } from "../../contexts";
 
 const AllCountries = () => {
@@ -16,7 +15,6 @@ const AllCountries = () => {
   const [searchValue, setSearchValue] = React.useState("");
   const [showDropdown, setShowDropDown] = React.useState(false);
   const navigate = useNavigate();
-  const { ref, isOpen, setIsOpen } = useClickOutside();
   const { darkmodeEnabled } = React.useContext(DarkmodeContext);
 
   const regions = ["Africa", "America", "Asia", "Europe", "Oceania"];
@@ -110,7 +108,6 @@ const AllCountries = () => {
               {!!searchValue && (
                 <ul
                   className={clsx(style.suggestions, style["search-content"])}
-                  ref={ref}
                 >
                   {onSearch(true).map((el, index) => (
                     <li

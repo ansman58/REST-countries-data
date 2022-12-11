@@ -65,6 +65,13 @@ const Country: React.FC<ICountry> = ({}) => {
     Capital: capital,
   };
 
+  const onGoToBorderCountry = React.useCallback(
+    (country: string) => {
+      navigate(routes.CountryRoute + "/" + country);
+    },
+    [borderCountries]
+  );
+
   return (
     <>
       {loading ? (
@@ -113,7 +120,7 @@ const Country: React.FC<ICountry> = ({}) => {
                 </ul>
                 <div className={style.last}>
                   <div className={style.currencyDiv}>
-                    <p>Top Level Domain: </p>{" "}
+                    <p>Top Level Domain: </p>
                     <p>{topLevelDomain?.join(", ")}</p>
                   </div>
                   <div className={style.currencyDiv}>
@@ -138,7 +145,11 @@ const Country: React.FC<ICountry> = ({}) => {
                 <p>Border Countries: </p>
                 <ul className={style.flexBorder}>
                   {borderCountries?.map((el: string, index: number) => (
-                    <li className={style.brd} key={index}>
+                    <li
+                      className={style.brd}
+                      key={index}
+                      onClick={() => onGoToBorderCountry(el)}
+                    >
                       {el}
                     </li>
                   ))}
