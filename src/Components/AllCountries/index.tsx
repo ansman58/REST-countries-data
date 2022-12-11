@@ -93,7 +93,12 @@ const AllCountries = () => {
           <div className={style["search-container"]}>
             <div className={style.con}>
               <div className={style["search-content"]}>
-                <FaSearch color="white" className={style["search-icon"]} />
+                <FaSearch
+                  color={
+                    darkmodeEnabled ? "hsl(0, 0%, 100%)" : "hsl(209, 23%, 22%)"
+                  }
+                  className={style["search-icon"]}
+                />
                 <input
                   type="search"
                   placeholder="Search for a country..."
@@ -128,7 +133,9 @@ const AllCountries = () => {
               >
                 <p>{filter}</p>
                 <FaAngleDown
-                  color="white"
+                  color={
+                    darkmodeEnabled ? "hsl(0, 0%, 100%)" : "hsl(209, 23%, 22%)"
+                  }
                   className={clsx({ [style.rotate]: showDropdown })}
                 />
               </div>

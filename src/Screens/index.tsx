@@ -26,7 +26,11 @@ const Screens: React.FC<IScreens> = ({ children }) => {
         <div className={style.header}>
           <h1>Where in the world?</h1>
           <div className={style.darkmodeToggle} onClick={onToggleDarkMode}>
-            <FaMoon color={darkmodeEnabled ? "white" : "hsl(209, 23%, 22%)"} />
+            <FaMoon
+              color={
+                darkmodeEnabled ? "hsl(0, 0%, 100%)" : "hsl(209, 23%, 22%)"
+              }
+            />
             <span>Dark</span>
           </div>
         </div>
