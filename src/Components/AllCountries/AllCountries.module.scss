@@ -8,7 +8,7 @@
   justify-content: space-between;
   width: 100%;
   margin-block: 30px;
-
+  position: sticky;
   @media (max-width: 768px) {
     flex-direction: column;
   }
@@ -177,6 +177,10 @@
   background-color: hsl(207, 26%, 17%);
   color: hsl(0, 0%, 100%);
 
+  .search-container {
+    background-color: hsl(207, 26%, 17%);
+  }
+
   .ul,
   .search,
   .div1,
@@ -191,6 +195,10 @@
 .lightmode {
   background-color: hsl(0, 0%, 98%);
   color: hsl(200, 15%, 8%);
+
+  .search-container {
+    background-color: hsl(0, 0%, 98%);
+  }
 
   .ul,
   .div1,

@@ -7,6 +7,7 @@ import { ICountryData } from "../../interfaces";
 import { FaSearch, FaAngleDown } from "react-icons/fa";
 import { routes } from "../../navigation";
 import { DarkmodeContext } from "../../contexts";
+import { useClickOutside } from "../../hooks/useClickOutside";
 
 const AllCountries = () => {
   const [countries, setCountries] = React.useState<ICountryData[]>([]);
@@ -16,11 +17,19 @@ const AllCountries = () => {
   const [showDropdown, setShowDropDown] = React.useState(false);
   const navigate = useNavigate();
   const { darkmodeEnabled } = React.useContext(DarkmodeContext);
+  const searchRef = useClickOutside({ value: searchValue, isSearch: true });
+  const filterRef = useClickOutside({
+    value: searchValue,
+    setValue: setShowDropDown,
+  });
 
-  const regions = ["Africa", "America", "Asia", "Europe", "Oceania"];
+  const regions = ["All", "Africa", "America", "Asia", "Europe", "Oceania"];
 
   const onFilter = (data: ICountryData[]) => {
     switch (filter) {
+      case "All":
+        setCountries(data);
+        break;
       case "Africa":
         setCountries(
           data.filter((el: ICountryData) => el?.region === "Africa")
@@ -33,16 +42,19 @@ const AllCountries = () => {
         break;
       case "Asia":
         setCountries(data.filter((el: ICountryData) => el?.region === "Asia"));
+
         break;
       case "Europe":
         setCountries(
           data.filter((el: ICountryData) => el?.region === "Europe")
         );
+
         break;
       case "Oceania":
         setCountries(
           data.filter((el: ICountryData) => el?.region === "Oceania")
         );
+        setShowDropDown(true);
         break;
       default:
         setCountries(data);
@@ -108,6 +120,7 @@ const AllCountries = () => {
               {!!searchValue && (
                 <ul
                   className={clsx(style.suggestions, style["search-content"])}
+                  ref={searchRef}
                 >
                   {onSearch(true).map((el, index) => (
                     <li
@@ -127,6 +140,7 @@ const AllCountries = () => {
               <div
                 className={style.div1}
                 onClick={() => setShowDropDown((prev) => !prev)}
+                ref={filterRef}
               >
                 <p>{filter}</p>
                 <FaAngleDown
@@ -166,7 +180,7 @@ const AllCountries = () => {
                 <ul className={style.details}>
                   <li className={style.name}>{el?.name?.common}</li>
                   <li className={style.item}>
-                    <span className={style.span1}>Population:</span>
+                    <span className={style.span1}>Population: </span>
                     <span>
                       {Intl.NumberFormat().format(Number(el?.population))}
                     </span>
